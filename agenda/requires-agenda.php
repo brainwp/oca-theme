@@ -10,7 +10,7 @@ require_once (get_stylesheet_directory() . '/agenda/metaboxes-agenda.php');
 // require_once (get_stylesheet_directory() . '/agenda/schedule-agenda.php');
 
 //Adiciona o Widget a Agenda
-require_once (get_stylesheet_directory() . '/agenda/widget-agenda.php');
+//require_once (get_stylesheet_directory() . '/agenda/widget-agenda.php');
 
 //Adiciona o Functions a Agenda
 require_once (get_stylesheet_directory() . '/agenda/functions-agenda.php');

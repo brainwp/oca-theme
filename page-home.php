@@ -159,7 +159,7 @@ get_header( 'home' ); ?>
 		switch ($mes){
 			case 1: $mes="Janeiro"; break;
 			case 2: $mes="Fevereiro"; break;
-			case 3: $mes="Março"; break;
+			case 3: $mes="MarÃ§o"; break;
 			case 4: $mes="Abril"; break;
 			case 5: $mes="Maio"; break;
 			case 6: $mes="Junho"; break;
@@ -176,13 +176,13 @@ get_header( 'home' ); ?>
    	<div class="evento-agenda">					
     
 	<?php
-	// Condição: Se a data do evento for maior ou igual que a data de expiração, exibe normalmente!
+	// CondiÃ§Ã£o: Se a data do evento for maior ou igual que a data de expiraÃ§Ã£o, exibe normalmente!
     if ( $ag_data_time >= $dataexpira ) { ?>
 	    <div class="cada cada-agenda">
     <?php } ?>
     
    	<?php
-	// Condição: Se a data do evento for menor que a data de expiração, exibe alterado!
+	// CondiÃ§Ã£o: Se a data do evento for menor que a data de expiraÃ§Ã£o, exibe alterado!
     if ( $ag_data_time < $dataexpira ) { ?>
     	<div class="cada cada-agenda passado">
     <?php } ?>

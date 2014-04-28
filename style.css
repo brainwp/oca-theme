@@ -685,7 +685,7 @@ a.leia-mais-home {
 }
 
 .titulo-agenda, .local-agenda, .mais-agenda {
-	height: 20px;
+	height: auto;
 }
 
 .mais-agenda a {
@@ -699,7 +699,7 @@ a.leia-mais-home {
 }
 
 .toda-agenda {
-	margin: -15px 0 10px 0;
+	margin: -5px 0 0 0;
 
 }
 

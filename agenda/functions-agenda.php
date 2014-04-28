@@ -34,17 +34,16 @@
 	add_action( 'manage_agenda_posts_custom_column', 'content_nova_coluna_agenda', 10, 2 );
 // Fim
 
-
-// Ordena automaticamente os Eventos da Agenda de forma ascendente (ASC)
+//Ordena automaticamente os Eventos da Agenda de forma ascendente (ASC)
 	function agenda_pre_get_posts( $query ) {
 		if (is_admin()) {
 	
 			if (isset($query->query_vars['post_type'])) {
-			   if ($query->query_vars['post_type'] == 'eventos') {
+			  if ($query->query_vars['post_type'] == 'agenda') {
 	
-					$query->set('meta_key', 'agenda-event-date');
-					$query->set('orderby', 'meta_value');
-					$query->set('order', 'DESC');
+				$query->set('meta_key', 'agenda-event-date');
+				$query->set('orderby', 'meta_value');
+				$query->set('order', 'DESC');
 				}
 			}
 		}

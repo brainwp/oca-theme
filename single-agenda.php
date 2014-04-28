@@ -15,7 +15,7 @@ get_header(); ?>
  <?php
 //Pega o CPT
 $post_type_obj = get_post_type_object('agenda');
-//Pega o Título do CPT
+//Pega o TÃ­tulo do CPT
 $title_agenda = apply_filters('post_type_archive_title', $post_type_obj->labels->name );
 ?>
 
@@ -34,7 +34,7 @@ $title_agenda = apply_filters('post_type_archive_title', $post_type_obj->labels-
 		<div class="entry-content">
                    
 		<?php while ( have_posts() ) : the_post(); ?>
-       <?php // Pega os dados e salva em variáveis
+       <?php // Pega os dados e salva em variÃ¡veis
 				$ag_data = get_post_meta($post->ID,'agenda-event-date',TRUE);
 				$ag_inicio = get_post_meta($post->ID,'agenda_horario_inic',TRUE);
 				$ag_termino = get_post_meta($post->ID,'agenda_horario_fim',TRUE);
@@ -57,7 +57,7 @@ $title_agenda = apply_filters('post_type_archive_title', $post_type_obj->labels-
 				$ag_data_explode = explode("/", $ag_data_invertida);
 				/* Dia */				
 				$ag_dia = $ag_data_explode[2];
-				/* Mês */
+				/* MÃªs */
 				$ag_mes = $ag_data_explode[1];
 				/* Ano */
 				$ag_ano = $ag_data_explode[0];
@@ -65,7 +65,7 @@ $title_agenda = apply_filters('post_type_archive_title', $post_type_obj->labels-
 				switch ($ag_mes){
 					case 1: $ag_mes="Janeiro"; break;
 					case 2: $ag_mes="Fevereiro"; break;
-					case 3: $ag_mes="Março"; break;
+					case 3: $ag_mes="MarÃ§o"; break;
 					case 4: $ag_mes="Abril"; break;
 					case 5: $ag_mes="Maio"; break;
 					case 6: $ag_mes="Junho"; break;
