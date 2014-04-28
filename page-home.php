@@ -206,7 +206,7 @@ get_header( 'home' ); ?>
 	<!-- Loop -->
     
 	<div class="toda-agenda">
-    <a href="<?php bloginfo( 'home' ); ?>/agenda">Veja toda aaaagenda>></a>
+    <a href="<?php bloginfo( 'home' ); ?>/agenda">Veja toda a Agenda>></a>
     </div><!-- .toda-agenda -->
     
     </div><!-- #agenda-home -->
