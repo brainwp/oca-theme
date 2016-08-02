@@ -3946,3 +3946,34 @@ p.comment-form-comment {
 .woocommerce-page #billing_neighborhood_field {
 	display: none;
 }
+
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+    width: 100% !important;
+    margin: 0 3.8% 0 0 !important;
+}
+
+.woocommerce ul.products {
+	background-color: #FFF;
+    padding: 10px !important;
+}
+
+.woocommerce ul.products li.product a img {
+    display: none !important;
+}
+
+.woocommerce ul.products li.product .button {
+    margin-top: -5em !important;
+    margin-right: 20px;
+    float: right;
+    background-color: #DBB623;
+    color: #FFF;
+}
+
+.woocommerce ul.products li.product h3 {
+    font-size: 2em !important;
+}
+.woocommerce ul.products li.product .price {
+    color: #888888 !important;
+    margin-bottom: 0 !important;
+    font-size: 2.5em !important;
+}
