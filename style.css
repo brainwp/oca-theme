@@ -431,7 +431,7 @@ body.home, .body-nucleos, body.page, .body-projetos, body.archive, body.single-a
 }
 
 #slider-home {
-	margin: 25px 0 25px 0;
+	margin: 0 0 25px 0;
 	display: block;
 
 }
@@ -3166,13 +3166,14 @@ a.comment-reply-link > span {
 #respond {
 	background: #e7e3da;
 	border: 1px solid #c0b498;
-	margin: 5em auto 1.625em 0;
+	margin: 1.625em auto 1.625em 0;
 	padding: 1.625em;
 	position: relative;
 	width: 90%;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
+	display: inline-block;
 }
 #respond input[type="text"],
 #respond textarea {
@@ -3903,7 +3904,9 @@ p.comment-form-comment {
 
 /* WOO CUSTOM
 ----------------------------------------------- */
-
+.woo-vindi-description {
+	margin: 0 0 40px 0
+}
 
 .woocommerce-breadcrumb {
     display: none;
@@ -3920,5 +3923,26 @@ p.comment-form-comment {
 }
 
 .woocommerce .woocommerce-ordering {
+	display: none;
+}
+
+.woocommerce .woocommerce-result-count {
+    display: none;
+}
+
+.post-type-archive-product h1.page-title {
+	display: none;
+}
+
+.woocommerce-page .col2-set .col-2 { 
+    display: none;
+}
+
+.woocommerce-page .col2-set .col-1 {
+    float: left;
+    width: 100% !important;
+}
+
+.woocommerce-page #billing_neighborhood_field {
 	display: none;
 }

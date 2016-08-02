@@ -32,8 +32,8 @@ get_header( 'shop' ); ?>
 		do_action( 'woocommerce_before_main_content' );
 	?>
 
-		<div>
-		<?php query_posts('pagename=doe'); if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+		<div class="woo-vindi-description">
+		<?php query_posts('pagename=colabore-woo'); if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                 <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                 <?php $content = get_the_content(); 
                 	echo ($content); ?>
