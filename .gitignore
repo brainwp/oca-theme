@@ -1,0 +1,11 @@
+error_log
+
+.vagrant
+Vagrantfile
+
+sftp-config.json
+
+*.swp
+*.swo
+*.zip
+*~

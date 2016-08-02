@@ -155,7 +155,7 @@ body {
 
 /* Singular */
 .singular #primary {
-	margin: 0;
+    margin: 20px 0 0 0;
 }
 .singular,
 .left-sidebar.singular {
@@ -1186,7 +1186,8 @@ a:hover {
 #branding {
 	position: relative;
 	z-index: 9999;
-/*	padding-top: 40px;*/
+    padding-bottom: 20px;
+    display: inline-block;
 }
 #site-title {
 	margin-right: 270px;
@@ -2191,8 +2192,9 @@ article.format-status .entry-content {
 /* Singular content styles for Posts and Pages */
 .singular .hentry {
 	border-bottom: none;
-	padding: 4.875em 0 0;
+	padding: 20px 0 0;
 	position: relative;
+	display: inline-grid;
 }
 .content-error404, .singular.page .hentry {
 	padding: 3.5em 0 0;
@@ -3896,4 +3898,27 @@ p.comment-form-comment {
 
 #ie8 section.feature-image.large img {
 	width: 100%;
+}
+
+
+/* WOO CUSTOM
+----------------------------------------------- */
+
+
+.woocommerce-breadcrumb {
+    display: none;
+}
+
+.woocommerce-page.right-sidebar #content.twentyeleven {
+    margin: 40px 0 0 0 !important;
+    width: 100% !important;
+    float: left;
+}
+
+.woocommerce-page.right-sidebar #secondary{
+	display: none;
+}
+
+.woocommerce .woocommerce-ordering {
+	display: none;
 }
