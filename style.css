@@ -3949,12 +3949,13 @@ p.comment-form-comment {
 
 .woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
     width: 100% !important;
-    margin: 0 3.8% 0 0 !important;
+    margin: 0 3.8% 20px 0 !important;
 }
 
-.woocommerce ul.products {
+
+.woocommerce ul.products li{
 	background-color: #FFF;
-    padding: 10px !important;
+	padding: 10px !important;
 }
 
 .woocommerce ul.products li.product a img {
