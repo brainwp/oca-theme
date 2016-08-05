@@ -3963,18 +3963,25 @@ p.comment-form-comment {
 }
 
 .woocommerce ul.products li.product .button {
-    margin-top: -5em !important;
+    margin-top: -2em !important;
     margin-right: 20px;
     float: right;
     background-color: #DBB623;
     color: #FFF;
 }
 
+.woocommerce ul.products li.product .button:hover {
+    background-color: #DBD643;
+}
+
 .woocommerce ul.products li.product h3 {
-    font-size: 2em !important;
+    font-size: 1.6em !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;	
 }
 .woocommerce ul.products li.product .price {
-    color: #888888 !important;
+    color: #DBB623 !important;
     margin-bottom: 0 !important;
-    font-size: 2.5em !important;
+    font-size: 2em !important;
+    font-weight: bold !important;
 }
