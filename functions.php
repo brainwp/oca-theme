@@ -146,6 +146,13 @@ function remove_dashboard_widgets() {
 
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
 
+// Função para Pular carrinho e ir direto para Finalizar compra
 
+function cart_redirect() {
+	if ( is_cart() ) {
+		wp_redirect( WC()->cart->get_checkout_url() );
+	}
+}
+add_action( 'get_header', 'cart_redirect', 9999 );
 
 ?>
