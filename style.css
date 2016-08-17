@@ -7,7 +7,7 @@ Author URI: http://brasa.art.br
 Description: Tema desenvolvido pela Brasa para a OCA.
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: textura, cores, design, danÁa, teatro, oficinas culturais, oca
+Tags: textura, cores, design, dan√ßa, teatro, oficinas culturais, oca
 Text Domain: oca
 Version: 0.2
 */
@@ -964,7 +964,7 @@ a.leia-mais-home {
 	z-index: -999;
 }
 
-/* =Centro de FormaÁ„o
+/* =Centro de Forma√ß√£o
 ----------------------------------------------- */
 #bg-centro-de-formacao {
 	background: url(images/bg-header-centro-formacao.jpg) center top;
@@ -974,7 +974,7 @@ a.leia-mais-home {
 	z-index: -999;
 }
 
-/* =Indument·ria e Figurino
+/* =Indument√°ria e Figurino
 ----------------------------------------------- */
 #bg-indumentaria-figurino {
 	background: url(images/bg-header-indumentaria-figurino.jpg) center top;
@@ -3984,4 +3984,8 @@ p.comment-form-comment {
     margin-bottom: 0 !important;
     font-size: 2em !important;
     font-weight: bold !important;
+}
+
+.woocommerce-billing-fields #billing_first_name_field {
+	width: 100%;
 }
