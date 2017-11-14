@@ -47,7 +47,10 @@
 	?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+<link href="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/owl-carousel/owl.carousel.css" rel="stylesheet">
+<link href="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/owl-carousel/owl.theme.css" rel="stylesheet">
+<link href="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/owl-carousel/owl.transitions.css" rel="stylesheet">
+<link href="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/js/google-code-prettify/prettify.css" rel="stylesheet">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <!--[if lt IE 9]>
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
@@ -66,6 +69,20 @@
 	 */
 	wp_head();
 ?>
+    <style>
+    #owl-demo .owl-item div{
+      padding:5px;
+    }
+    #owl-demo .owl-item img{
+      display: block;
+      width: 480px;
+      height: auto;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+    }
+    </style>
+
 </head>
 
 <body <?php body_class(); ?>>

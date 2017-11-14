@@ -155,4 +155,10 @@ function cart_redirect() {
 }
 add_action( 'get_header', 'cart_redirect', 9999 );
 
+function my_custom_place_order_text( $text ) {
+    return 'Finalizar Apoio';
+}
+
+add_filter( 'woocommerce_order_button_text', 'my_custom_place_order_text' );
+
 ?>

@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-get_header( 'shop' ); ?>
+get_header( 'doacao' ); ?>
 
 	<?php
 		/**
@@ -31,18 +31,39 @@ get_header( 'shop' ); ?>
 		 */
 		do_action( 'woocommerce_before_main_content' );
 	?>
+			<div class="woo-vindi-description">
+			<?php query_posts('pagename=colabore-woo'); if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	                <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+	                <?php $content = get_the_content(); 
+	                	echo ($content); ?>
+					<?php endwhile; endif; wp_reset_query(); ?>
+	                
+	                <div class="hack-clear"></div>
+			</div>
+		<div id="texto-content">
+			<div id="demo">
+		      <div class="container">
+		        <div class="row">
+		          <div class="span5">
+		            <div id="owl-demo" class="owl-carousel">
+		              <div><img src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/images/escolha.JPG"></div>
+		              <div><img src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/images/slide-1.JPG"></div>
+		              <div><img src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/images/slide-2.JPG"></div>
+		              <div><img src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/images/slide-3.JPG"></div>
+		              <div><img src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/images/slide-4.JPG"></div>
+		              <div><img src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/images/slide-5.JPG"></div>
+		              <div><img src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/images/slide-6.JPG"></div>
+		              <div><img src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/images/slide-7.JPG"></div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
 
-		<div class="woo-vindi-description">
-		<?php query_posts('pagename=colabore-woo'); if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                <?php $content = get_the_content(); 
-                	echo ($content); ?>
-				<?php endwhile; endif; wp_reset_query(); ?>
-                
-                <div class="hack-clear"></div>
+		    <script src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/js/jquery-1.9.1.min.js"></script> 
+		    <script src="https://ocaescolacultural.org.br/wp-content/themes/oca-theme/owl-carousel/owl.carousel.js"></script>
 		</div>
-
-
+		<div id="produtos-content">
 		<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 
 			<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
@@ -58,7 +79,6 @@ get_header( 'shop' ); ?>
 			 */
 			do_action( 'woocommerce_archive_description' );
 		?>
-
 		<?php if ( have_posts() ) : ?>
 
 			<?php
@@ -76,8 +96,8 @@ get_header( 'shop' ); ?>
 				<?php woocommerce_product_subcategories(); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
-
-					<?php wc_get_template_part( 'content', 'product' ); ?>
+					 
+					<?php wc_get_template_part( 'content', 'product' );?>
 
 				<?php endwhile; // end of the loop. ?>
 
@@ -97,7 +117,8 @@ get_header( 'shop' ); ?>
 			<?php wc_get_template( 'loop/no-products-found.php' ); ?>
 
 		<?php endif; ?>
-
+			<div><strong>* contribuição será feita mensalmente.</strong></div>
+	</div>
 	<?php
 		/**
 		 * woocommerce_after_main_content hook.
@@ -115,5 +136,10 @@ get_header( 'shop' ); ?>
 		 */
 		do_action( 'woocommerce_sidebar' );
 	?>
+	
+	<script type='text/javascript'>
+		jQuery(".price").append("*");
+	</script>
+	
 
-<?php get_footer( 'shop' ); ?>
+<?php get_footer( 'doacao' ); ?>

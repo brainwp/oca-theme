@@ -77,7 +77,7 @@
 
 <div id="page" class="hfeed">
 
-    <div id="colabore"><a class="a-colabore" href="<?php bloginfo( 'home' ); ?>/colabore"></a></div>
+    <div id="colabore"><a class="a-colabore" href="<?php bloginfo( 'home' ); ?>/doe"></a></div>
 
 	<header id="branding" role="banner">
 
