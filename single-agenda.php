@@ -23,7 +23,7 @@ $title_agenda = apply_filters('post_type_archive_title', $post_type_obj->labels-
 	<header class="entry-header">
 		<div class="title-com-voltar">
 		<div id="voltar-agenda">
-		<a href="<?php bloginfo( 'home' ); ?>/agenda">
+		<a href="<?php home_url( '/' ); ?>/agenda">
 		<h2 class="entry-title title-agenda"><?php echo $title_agenda; ?></h2>
 		<p>Voltar para Agenda</p>
 		</a>

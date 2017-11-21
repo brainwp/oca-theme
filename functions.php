@@ -23,6 +23,9 @@ function limit_words($string, $word_limit) {
 	return implode(' ', array_slice($words, 0, $word_limit));
 }
 
+// This theme uses Featured Images (also known as post thumbnails) for per-post/per-page Custom Header images
+add_theme_support( 'post-thumbnails' );
+
 /**
 * Adiciona um tamanho de imagem
 *
@@ -94,19 +97,106 @@ require_once ( get_stylesheet_directory() . '/custom-projetos.php' );
 *
 */
 function thumbnail_bg () {
-	$get_post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), array(800,99999), false, '' );
+	$get_post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), array(800,99999), false, '' );
 	echo 'style="background: url('.$get_post_thumbnail[0].' ) center center"';
 }
 
-/**
-* Minhas Opções
-*/
-require( get_stylesheet_directory() . '/opcoes/opcoes.php' );
 
+// Add Customizer panel for Contatos e Links
+function oca_customizer_register( $wp_customize ) {
+
+
+	$wp_customize->add_panel( 'panel_oca', array(
+	    'priority' => 10,
+	    'capability' => 'edit_theme_options',
+	    'theme_supports' => '',
+	    'title' => __( 'Contatos e Links', 'textdomain' ),
+	    'description' => '',
+	) );
+
+
+	$wp_customize->add_section( 'section_contatos', array(
+	    'priority' => 10,
+	    'capability' => 'edit_theme_options',
+	    'theme_supports' => '',
+	    'title' => __( 'Contatos', 'textdomain' ),
+	    'description' => '',
+	    'panel' => 'panel_oca',
+	) );
+
+	$wp_customize->add_setting( 'text_field_endereco', array(
+	'default'           => 'CNPJ: 04.069.395/0001-30 - Rua Xapuri, 600 - Pq. da Aldeia - Carapicuiba/SP 06343-020',
+	'transport' => 'refresh',
+	'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'text_field_endereco', array(
+	    'type' => 'text',
+	    'section' => 'section_contatos',
+	    'label' => __( 'Endere&ccedil;o', 'textdomain' ),
+	    'description' => 'Adicione o endere&ccedil;o para o rodap&eacute;',
+	) );
+
+	$wp_customize->add_setting( 'text_field_tel', array(
+	'default' => '(11) 4146-8719',
+	'transport' => 'refresh',
+	'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'text_field_tel', array(
+	    'type' => 'text',
+	    'section' => 'section_contatos',
+	    'label' => __( 'Telefone', 'textdomain' ),
+	    'description' => 'Adicione o telefone para o rodap&eacute;. Exemplo (11) 4444-4444',
+	) );
+
+	$wp_customize->add_section( 'section_links', array(
+	    'priority' => 10,
+	    'capability' => 'edit_theme_options',
+	    'theme_supports' => '',
+	    'title' => __( 'Links', 'textdomain' ),
+	    'description' => '',
+	    'panel' => 'panel_oca',
+	) );
+
+	$wp_customize->add_setting( 'url_field_fb', array(
+	'default' => '',
+	'type' => 'theme_mod',
+	'capability' => 'edit_theme_options',
+	'transport' => '',
+	'sanitize_callback' => 'esc_url',
+	) );
+
+	$wp_customize->add_control( 'url_field_fb', array(
+	    'type' => 'url',
+	    'priority' => 10,
+	    'section' => 'section_links',
+	    'label' => __( 'Facebook', 'textdomain' ),
+	    'description' => 'Adicione a url para o Facebook com http://',
+	) );
+
+	$wp_customize->add_setting( 'url_field_grade', array(
+	'default' => '',
+	'type' => 'theme_mod',
+	'capability' => 'edit_theme_options',
+	'transport' => '',
+	'sanitize_callback' => 'esc_url',
+	) );
+
+	$wp_customize->add_control( 'url_field_grade', array(
+	    'type' => 'url',
+	    'priority' => 10,
+	    'section' => 'section_links',
+	    'label' => __( 'Grade de Atividades', 'textdomain' ),
+	    'description' => 'Adicione a URL para o .pdf da Grade de Atividades.',
+	) );
+
+}
+add_action( 'customize_register', 'oca_customizer_register' );
 
 // Remove notificações de update do WP para usuários abaixo do Administrador
 global $user_login;
-get_currentuserinfo();
+wp_get_current_user();
 if (!current_user_can('update_plugins')) { // checks to see if current user can update plugins
 add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
 add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
@@ -148,15 +238,21 @@ add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
 
 // Função para Pular carrinho e ir direto para Finalizar compra
 
-function cart_redirect() {
-	if ( is_cart() ) {
-		wp_redirect( WC()->cart->get_checkout_url() );
+include_once(ABSPATH .'wp-admin/includes/plugin.php');
+
+function cart_redirect() { 
+		if ( is_plugin_active('woocommerce/woocommerce.php') ) {
+			if ( is_cart() ) {
+				wp_redirect( WC()->cart->get_checkout_url() );
+			}
+		}
 	}
-}
 add_action( 'get_header', 'cart_redirect', 9999 );
 
 function my_custom_place_order_text( $text ) {
-    return 'Finalizar Apoio';
+	if ( is_plugin_active('woocommerce/woocommerce.php') ) {
+    	return 'Finalizar Apoio';
+	}
 }
 
 add_filter( 'woocommerce_order_button_text', 'my_custom_place_order_text' );

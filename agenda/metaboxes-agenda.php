@@ -115,7 +115,7 @@ function mytheme_add_box() {
 		$meta_box['context'],
 		$meta_box['priority']);
 	
-	$date = get_post_meta( $post->ID, 'agenda-event-date', true );
+	$date = get_post_meta( get_the_ID(), 'agenda-event-date', true );
 	
 	if( $date != '' )
 		$date = date( 'm-d-Y', $date );	
@@ -173,11 +173,11 @@ function mytheme_show_box() {
     function mytheme_save_data($post_id) {
     global $meta_box;
 	
-	$meta_box['agenda-event-date'] = strtotime( $_POST['agenda-event-date'] );
+	$meta_box['agenda-event-date'] = strtotime( get_the_ID(['agenda-event-date']) );
 
 	
     // verify nonce
-    if (!wp_verify_nonce($_POST['mytheme_meta_box_nonce'], basename(__FILE__))) {
+    if (!wp_verify_nonce(get_the_ID(['mytheme_meta_box_nonce']), basename(__FILE__))) {
     return $post_id;
     }
     // Checa se AutoSave está ativo e o ignora

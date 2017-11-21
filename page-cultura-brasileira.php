@@ -171,14 +171,14 @@ get_header( 'nucleos' ); ?>
 	<!-- Loop -->
     
 	<div class="toda-agenda">
-    <a href="<?php bloginfo( 'home' ); ?>/agenda">Veja toda agenda>></a>
+    <a href="<?php home_url( '/' ); ?>agenda">Veja toda agenda>></a>
     </div><!-- .toda-agenda -->
     
     </div><!-- #agenda-home -->
     
 	<div id="botoes-home">
         <div id="botao-atividades">
-        <a class="a-botao-atividades" href="<?php echo get_option( 'mo_grade' ); ?>" target="_blank">
+        <a class="a-botao-atividades" href="<?php echo get_theme_mod( 'url_field_grade' ); ?>" target="_blank">
         <h3>Atividades</h3>
         <p>Clique para fazer o download.</p>
         </a>

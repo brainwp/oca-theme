@@ -41,7 +41,7 @@ get_header( 'home' ); ?>
                 <div class="box-home">
                 <p>Cultura Brasileira</p>
 				<div class="thumb-box-home">
-				<a class="a-thumb-box-home" href="<?php bloginfo( 'home' ); ?>/cultura-brasileira">
+				<a class="a-thumb-box-home" href="<?php home_url( '/' ); ?>cultura-brasileira">
 				<?php echo get_the_post_thumbnail($id_cultura_brasileira, array(225,225)); ?>
 				</a>
 				</div>
@@ -50,7 +50,7 @@ get_header( 'home' ); ?>
                 <div class="box-home">
                 <p>Cultura Infantil</p>
 				<div class="thumb-box-home">
-				<a class="a-thumb-box-home" href="<?php bloginfo( 'home' ); ?>/cultura-infantil">
+				<a class="a-thumb-box-home" href="<?php home_url( '/' ); ?>cultura-infantil">
 				<?php echo get_the_post_thumbnail($id_cultura_infantil, array(225,225)); ?>
 				</a>
 				</div>
@@ -59,7 +59,7 @@ get_header( 'home' ); ?>
                 <div class="box-home">
                 <p>Centro de Forma&ccedil;&atilde;o</p>
 				<div class="thumb-box-home">
-				<a class="a-thumb-box-home" href="<?php bloginfo( 'home' ); ?>/centro-de-formacao">
+				<a class="a-thumb-box-home" href="<?php home_url( '/' ); ?>centro-de-formacao">
 				<?php echo get_the_post_thumbnail($id_centro_formacao, array(225,225)); ?>
 				</a>
 				</div>
@@ -68,7 +68,7 @@ get_header( 'home' ); ?>
                 <div class="box-home box-home-final">
                 <p>Indument&aacute;ria e Figurino</p>
 				<div class="thumb-box-home">
-				<a class="a-thumb-box-home" href="<?php bloginfo( 'home' ); ?>/indumentaria-e-figurino">
+				<a class="a-thumb-box-home" href="<?php home_url( '/' ); ?>indumentaria-e-figurino">
 				<?php echo get_the_post_thumbnail($id_indumentaria_figurino, array(225,225)); ?>
 				</a>
 				</div>
@@ -206,21 +206,21 @@ get_header( 'home' ); ?>
 	<!-- Loop -->
     
 	<div class="toda-agenda">
-    <a href="<?php bloginfo( 'home' ); ?>/agenda">Veja toda a Agenda>></a>
+    <a href="<?php home_url( '/' ); ?>agenda">Veja toda a Agenda>></a>
     </div><!-- .toda-agenda -->
     
     </div><!-- #agenda-home -->
     
     <div id="botoes-home">
         <div id="botao-premios">
-        <a class="a-botao-premios" href="<?php bloginfo( 'home' ); ?>/premios">
+        <a class="a-botao-premios" href="<?php home_url( '/' ); ?>premios">
         <h3>Pr&ecirc;mios OCA</h3>
         <p>Veja as premia&ccedil;&otilde;es que a OCA conquistou no decorrer dos anos.</p>
         </a>
         </div><!-- #botao-premios -->
     
         <div id="botao-certificados">
-		<a class="a-botao-certificados" href="<?php bloginfo( 'home' ); ?>/certificados">
+		<a class="a-botao-certificados" href="<?php home_url( '/' ); ?>certificados">
 		<h3>Certificados OCA</h3>
         <p>Conhe&ccedil;a nossos certificados.</p>
         </a>

@@ -40,14 +40,14 @@ flush_rewrite_rules();
 
 // Adiciona Taxonomia
 register_taxonomy(
-'cat_agenda',
-'agenda',
-array( 
-'label' => 'Adicionar Categorias ',
-'singular_label' => 'Categoria',
-'rewrite' => true,
-'hierarchical' => true
-)
+	'cat_agenda',
+	'agenda',
+	array( 
+		'label' => 'Adicionar Categorias ',
+		'singular_label' => 'Categoria',
+		'rewrite' => true,
+		'hierarchical' => true
+	)
 );
 
 // Fim CustomPostType Agenda
