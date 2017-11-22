@@ -81,7 +81,7 @@
 
 <div id="page" class="hfeed">
 
-	<div id="colabore"><a class="a-colabore" href="<?php bloginfo( 'home' ); ?>/doe"></a></div>
+	<div id="colabore"><a class="a-colabore" href="<?php home_url( '/' ); ?>doe"></a></div>
     
 	<header id="branding" role="banner">
 	
