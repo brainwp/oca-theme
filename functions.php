@@ -203,10 +203,10 @@ add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
 }
 
 // Personaliza o rodapé do admin
-function custom_admin_footer() {
+function custom_admin_footer_brasa() {
         echo 'Desenvolvido com <a href=http://wordpress.org/>WordPress</a> por <a href=http://www.brasa.art.br>Brasa Design e Tecnologia</a>.';
 }
-add_filter('admin_footer_text', 'custom_admin_footer');
+add_filter('admin_footer_text', 'custom_admin_footer_brasa');
 
 // Remove o Item Editar do menu Aparência
 function remove_editor_menu() {

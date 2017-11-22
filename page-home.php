@@ -19,7 +19,9 @@ get_header( 'home' ); ?>
 			<div id="content" role="main">
 
 				<div id="slider-home">
-				<?php if(function_exists("insert_post_highlights")) insert_post_highlights(); ?>
+				<?php while ( have_posts() ) : the_post(); ?>
+					<?php the_content(); ?>
+				<?php endwhile;	wp_reset_query(); ?>
                 </div><!-- #slider-home -->
 
 				<?php query_posts('pagename=quem-somos'); if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
