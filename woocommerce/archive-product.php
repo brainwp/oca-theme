@@ -134,7 +134,7 @@ get_header( 'doacao' ); ?>
 		 *
 		 * @hooked woocommerce_get_sidebar - 10
 		 */
-		do_action( 'woocommerce_sidebar' );
+		// do_action( 'woocommerce_sidebar' );
 	?>
 	
 	<script type='text/javascript'>

@@ -94,14 +94,38 @@ function twentyeleven_custom_excerpt_more( $output ) {
 }
 add_filter( 'get_the_excerpt', 'twentyeleven_custom_excerpt_more' );
 
-
 load_theme_textdomain( 'twentyeleven', get_template_directory() . '/languages' );
 
 // This theme styles the visual editor with editor-style.css to match the theme style.
 add_editor_style();
 
+
+/**
+ * Register sidebars and widgetized areas.
+ *
+ * Also register the default Epherma widget.
+ *
+ * @since Twenty Eleven 1.0
+ */
+function twentyeleven_widgets_init() {
+	
+	register_sidebar( array(
+		'name' => __( 'Main Sidebar', 'twentyeleven' ),
+		'id' => 'sidebar-1',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+}
+add_action( 'widgets_init', 'twentyeleven_widgets_init' );
+
 // Add default posts and comments RSS feed links to <head>.
 add_theme_support( 'automatic-feed-links' );
+
+// Indicate widget sidebars can use selective refresh in the Customizer.
+add_theme_support( 'customize-selective-refresh-widgets' );
+
 
 // This theme uses wp_nav_menu() in one location.
 register_nav_menu( 'primary', __( 'Primary Menu', 'twentyeleven' ) );
@@ -457,7 +481,6 @@ function twentyeleven_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'twentyeleven_body_classes' );
-
 
 // Função para Pular carrinho e ir direto para Finalizar compra
 
