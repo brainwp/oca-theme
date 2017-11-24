@@ -23,6 +23,89 @@ function limit_words($string, $word_limit) {
 	return implode(' ', array_slice($words, 0, $word_limit));
 }
 
+
+/**
+ * Set the post excerpt length to 40 words.
+ *
+ * To override this length in a child theme, remove
+ * the filter and add your own function tied to
+ * the excerpt_length filter hook.
+ *
+ * @since Twenty Eleven 1.0
+ *
+ * @param int $length The number of excerpt characters.
+ * @return int The filtered number of characters.
+ */
+function twentyeleven_excerpt_length( $length ) {
+	return 40;
+}
+add_filter( 'excerpt_length', 'twentyeleven_excerpt_length' );
+
+if ( ! function_exists( 'twentyeleven_continue_reading_link' ) ) :
+/**
+ * Return a "Continue Reading" link for excerpts
+ *
+ * @since Twenty Eleven 1.0
+ *
+ * @return string The "Continue Reading" HTML link.
+ */
+function twentyeleven_continue_reading_link() {
+	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) . '</a>';
+}
+endif; // twentyeleven_continue_reading_link
+
+/**
+ * Replace "[...]" in the Read More link with an ellipsis.
+ *
+ * The "[...]" is appended to automatically generated excerpts.
+ *
+ * To override this in a child theme, remove the filter and add your own
+ * function tied to the excerpt_more filter hook.
+ *
+ * @since Twenty Eleven 1.0
+ *
+ * @param string $more The Read More text.
+ * @return The filtered Read More text.
+ */
+function twentyeleven_auto_excerpt_more( $more ) {
+	if ( ! is_admin() ) {
+		return ' &hellip;' . twentyeleven_continue_reading_link();
+	}
+	return $more;
+}
+add_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
+
+/**
+ * Add a pretty "Continue Reading" link to custom post excerpts.
+ *
+ * To override this link in a child theme, remove the filter and add your own
+ * function tied to the get_the_excerpt filter hook.
+ *
+ * @since Twenty Eleven 1.0
+ *
+ * @param string $output The "Continue Reading" link.
+ * @return string The filtered "Continue Reading" link.
+ */
+function twentyeleven_custom_excerpt_more( $output ) {
+	if ( has_excerpt() && ! is_attachment() && ! is_admin() ) {
+		$output .= twentyeleven_continue_reading_link();
+	}
+	return $output;
+}
+add_filter( 'get_the_excerpt', 'twentyeleven_custom_excerpt_more' );
+
+
+load_theme_textdomain( 'twentyeleven', get_template_directory() . '/languages' );
+
+// This theme styles the visual editor with editor-style.css to match the theme style.
+add_editor_style();
+
+// Add default posts and comments RSS feed links to <head>.
+add_theme_support( 'automatic-feed-links' );
+
+// This theme uses wp_nav_menu() in one location.
+register_nav_menu( 'primary', __( 'Primary Menu', 'twentyeleven' ) );
+
 // This theme uses Featured Images (also known as post thumbnails) for per-post/per-page Custom Header images
 add_theme_support( 'post-thumbnails' );
 
@@ -235,6 +318,146 @@ function remove_dashboard_widgets() {
 }
 
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets' );
+
+
+if ( ! function_exists( 'twentyeleven_content_nav' ) ) :
+/**
+ * Display navigation to next/previous pages when applicable.
+ *
+ * @since Twenty Eleven 1.0
+ *
+ * @param string $html_id The HTML id attribute.
+ */
+function twentyeleven_content_nav( $html_id ) {
+	global $wp_query;
+
+	if ( $wp_query->max_num_pages > 1 ) : ?>
+		<nav id="<?php echo esc_attr( $html_id ); ?>">
+			<h3 class="assistive-text"><?php _e( 'Post navigation', 'twentyeleven' ); ?></h3>
+			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'twentyeleven' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?></div>
+		</nav><!-- #nav-above -->
+	<?php endif;
+}
+endif; // twentyeleven_content_nav
+
+if ( ! function_exists( 'twentyeleven_comment' ) ) :
+/**
+ * Template for comments and pingbacks.
+ *
+ * To override this walker in a child theme without modifying the comments template
+ * simply create your own twentyeleven_comment(), and that function will be used instead.
+ *
+ * Used as a callback by wp_list_comments() for displaying the comments.
+ *
+ * @since Twenty Eleven 1.0
+ *
+ * @param object $comment The comment object.
+ * @param array  $args    An array of comment arguments. @see get_comment_reply_link()
+ * @param int    $depth   The depth of the comment.
+ */
+function twentyeleven_comment( $comment, $args, $depth ) {
+	$GLOBALS['comment'] = $comment;
+	switch ( $comment->comment_type ) :
+		case 'pingback' :
+		case 'trackback' :
+	?>
+	<li class="post pingback">
+		<p><?php _e( 'Pingback:', 'twentyeleven' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'twentyeleven' ), '<span class="edit-link">', '</span>' ); ?></p>
+	<?php
+			break;
+		default :
+	?>
+	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+		<article id="comment-<?php comment_ID(); ?>" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<?php
+						$avatar_size = 68;
+						if ( '0' != $comment->comment_parent )
+							$avatar_size = 39;
+
+						echo get_avatar( $comment, $avatar_size );
+
+						/* translators: 1: comment author, 2: date and time */
+						printf( __( '%1$s on %2$s <span class="says">said:</span>', 'twentyeleven' ),
+							sprintf( '<span class="fn">%s</span>', get_comment_author_link() ),
+							sprintf( '<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
+								esc_url( get_comment_link( $comment->comment_ID ) ),
+								get_comment_time( 'c' ),
+								/* translators: 1: date, 2: time */
+								sprintf( __( '%1$s at %2$s', 'twentyeleven' ), get_comment_date(), get_comment_time() )
+							)
+						);
+					?>
+
+					<?php edit_comment_link( __( 'Edit', 'twentyeleven' ), '<span class="edit-link">', '</span>' ); ?>
+				</div><!-- .comment-author .vcard -->
+
+				<?php if ( $comment->comment_approved == '0' ) : ?>
+					<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'twentyeleven' ); ?></em>
+					<br />
+				<?php endif; ?>
+
+			</footer>
+
+			<div class="comment-content"><?php comment_text(); ?></div>
+
+			<div class="reply">
+				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply <span>&darr;</span>', 'twentyeleven' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<?php
+			break;
+	endswitch;
+}
+endif; // ends check for twentyeleven_comment()
+
+if ( ! function_exists( 'twentyeleven_posted_on' ) ) :
+/**
+ * Print HTML with meta information for the current post-date/time and author.
+ *
+ * Create your own twentyeleven_posted_on to override in a child theme
+ *
+ * @since Twenty Eleven 1.0
+ */
+function twentyeleven_posted_on() {
+	printf( __( '<span class="sep">Posted on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'twentyeleven' ),
+		esc_url( get_permalink() ),
+		esc_attr( get_the_time() ),
+		esc_attr( get_the_date( 'c' ) ),
+		esc_html( get_the_date() ),
+		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+		esc_attr( sprintf( __( 'View all posts by %s', 'twentyeleven' ), get_the_author() ) ),
+		get_the_author()
+	);
+}
+endif;
+
+/**
+ * Add two classes to the array of body classes.
+ *
+ * The first is if the site has only had one author with published posts.
+ * The second is if a singular post being displayed
+ *
+ * @since Twenty Eleven 1.0
+ *
+ * @param array $classes Existing body classes.
+ * @return array The filtered array of body classes.
+ */
+function twentyeleven_body_classes( $classes ) {
+
+	if ( function_exists( 'is_multi_author' ) && ! is_multi_author() )
+		$classes[] = 'single-author';
+
+	if ( is_singular() && ! is_home() && ! is_page_template( 'showcase.php' ) && ! is_page_template( 'sidebar-page.php' ) )
+		$classes[] = 'singular';
+
+	return $classes;
+}
+add_filter( 'body_class', 'twentyeleven_body_classes' );
+
 
 // Função para Pular carrinho e ir direto para Finalizar compra
 

@@ -100,8 +100,8 @@ get_header( 'nucleos' ); ?>
 			"orderby" => "meta_value", // This stays as 'meta_value' or 'meta_value_num' (str sorting or numeric sorting)
 			"order" => "DESC"
 			);
-	$loop = new WP_Query( $args );
-	while ( $loop->have_posts() ) : $loop->the_post();
+	$loop = query_posts( $args );
+	while ( have_posts() ) : the_post();
 	
 	global $post;
 		//Pega a data escolhida no admin e grava em $ag_data, $ag_inicio...
@@ -178,7 +178,10 @@ get_header( 'nucleos' ); ?>
     
 	<div id="botoes-home">
         <div id="botao-atividades">
-        <a class="a-botao-atividades" href="<?php echo get_theme_mod( 'url_field_grade' ); ?>" target="_blank">
+        <?php
+		$grade = get_theme_mod ('url_field_grade');
+		?>
+        <a class="a-botao-atividades" href="<?php echo $grade; ?>" target="_blank">
         <h3>Atividades</h3>
         <p>Clique para fazer o download.</p>
         </a>
